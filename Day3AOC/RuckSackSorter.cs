@@ -54,41 +54,46 @@ namespace Day3AOC
                 }	
 			}
 
-			//var groupList = new List<string>();
-			//var count = 0;
+			
+			
 
 			//Part 2 Solution
 
-			//Group 3 lines together
+					
 
-			//Find a duplicate letter for those three lines
+			foreach (var line in ruckSackList.Chunk(3))
+			{
 
-			// Convert duplicate Char to a letter & add to list
+				foreach (var letter in line[0])
+				{
+					if (line[1].Contains(letter) && line[2].Contains(letter))
+					{
+						var intletter = Convert.ToInt32(letter);
+						GroupDuplicates.Add(intletter);
+						break;
+					}
+				}
+			}
 
-		
 
-			
-				
+			foreach (var number in GroupDuplicates)
+			{
 
+				if (number >= 65 && number <= 90)
+				{
+					var priority = number - 38;
+					badgePriorities.Add(priority);
 
-            //foreach (var number in GroupDuplicates)
-            //{
+				}
+				else if (number >= 97 && number <= 122)
+				{
+					var priority = number - 96;
+					badgePriorities.Add(priority);
 
-            //    if (number >= 65 && number <= 90)
-            //    {
-            //        var priority = number - 38;
-            //        badgePriorities.Add(priority);
+				}
+			}
 
-            //    }
-            //    else if (number >= 97 && number <= 122)
-            //    {
-            //        var priority = number - 96;
-            //        badgePriorities.Add(priority);
-
-            //    }
-            //}
-
-			return Priorities.Sum();
+			return badgePriorities.Sum();
 		}
 	}
 }
